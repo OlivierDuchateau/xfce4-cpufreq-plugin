@@ -218,7 +218,7 @@ static void
 cpufreq_widgets_layout (void)
 {
 	GtkRequisition icon_size, label_size;
-	GtkOrientation orientation;
+	GtkOrientation orientation = xfce_panel_plugin_get_orientation (cpuFreq->plugin);
 	gboolean small = cpuFreq->options->keep_compact;
 	gboolean resized = FALSE;
 	gboolean hide_label = (!cpuFreq->options->show_label_freq &&
@@ -230,15 +230,12 @@ cpufreq_widgets_layout (void)
 
 	switch (cpuFreq->panel_mode) {
 	case XFCE_PANEL_PLUGIN_MODE_HORIZONTAL:
-		orientation = small ? GTK_ORIENTATION_HORIZONTAL : GTK_ORIENTATION_VERTICAL;
 		xfce_panel_plugin_set_small (cpuFreq->plugin, small);
 		break;
 	case XFCE_PANEL_PLUGIN_MODE_VERTICAL:
-		orientation = small ? GTK_ORIENTATION_VERTICAL : GTK_ORIENTATION_HORIZONTAL;
 		xfce_panel_plugin_set_small (cpuFreq->plugin, small);
 		break;
 	case XFCE_PANEL_PLUGIN_MODE_DESKBAR:
-		orientation = small ? GTK_ORIENTATION_HORIZONTAL : GTK_ORIENTATION_VERTICAL;
 		xfce_panel_plugin_set_small (cpuFreq->plugin, hide_label ? TRUE : FALSE);
 		break;
 	}
